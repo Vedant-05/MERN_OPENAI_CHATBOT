@@ -1,7 +1,25 @@
 import { Box, Button, Typography } from "@mui/material";
 import CustomizedInput from "../components/shared/CustomizedInput";
+import { IoIosLogIn } from "react-icons/io";
+import { toast } from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
+  const auth = useAuth();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    try {
+      toast.loading("Signing In", { id: "login" });
+      await auth?.login(email, password);
+      toast.success("Signed In Succesfully", { id: "login" });
+    } catch (error) {
+      toast.error("Signing In Failed", { id: "login" });
+    }
+  };
   return (
     <Box width={"100%"} height={"100%"} display="flex" flex={1}>
       <Box padding={8} mt={8} display={{ md: "flex", sm: "none", xs: "none" }}>
@@ -17,6 +35,7 @@ function Login() {
         mt={16}
       >
         <form
+          onSubmit={handleSubmit}
           style={{
             margin: "auto",
             padding: "30px",
@@ -53,7 +72,10 @@ function Login() {
                 bgcolor: "#00fffc",
                 ":hover": { bgcolor: "white", color: "black" },
               }}
-            >Login</Button>
+              endIcon={<IoIosLogIn />}
+            >
+              Login
+            </Button>
           </Box>
         </form>
       </Box>
