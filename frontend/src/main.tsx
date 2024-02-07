@@ -9,7 +9,7 @@ import {Toaster} from "react-hot-toast"
 
 import axios from "axios"
 
-axios.defaults.baseURL = "http://localhost:5000/api/v1";
+axios.defaults.baseURL = "https://ai-chatbot-lq86.onrender.com/api/v1";
 axios.defaults.withCredentials = true;
 
 
