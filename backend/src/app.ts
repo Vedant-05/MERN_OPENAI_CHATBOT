@@ -11,7 +11,7 @@ const app = express();
 
 //Middlewears
 
-app.use(cors({origin:"http://localhost:5173", credentials:true}))
+app.use(cors({origin:"https://openai-chatbot-fe.onrender.com", credentials:true}))
 
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET))
