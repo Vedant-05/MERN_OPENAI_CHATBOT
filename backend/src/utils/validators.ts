@@ -19,7 +19,6 @@ export const validate = (validations: ValidationChain[]) => {
 };
 
 export const loginValidator = [
-
   body("email").trim().isEmail().withMessage("Email is required"),
   body("password")
     .trim()
@@ -30,4 +29,8 @@ export const loginValidator = [
 export const signupValidator = [
   body("name").notEmpty().withMessage("Name is required"),
   ...loginValidator,
+];
+
+export const chatCompletionValidator = [
+  body("message").notEmpty().withMessage("Message is required"),
 ];
